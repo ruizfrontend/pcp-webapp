@@ -3,21 +3,36 @@
     <head>
 		<meta name="Incendios en España"  content="text/html;"
 			http-equiv="content-type" charset="utf-8">
+        <link rel="stylesheet" href="/libs/leaflet.css" />
+        <script type="text/javascript" src="/libs/leaflet.js?2"></script>
 	</head>
     <body>
         <h1>Incendio de {{ object['COMUNIDAD'].decode('UTF-8') }}</h1>
-	      <p>En la comunidad {{ object['COMUNIDAD'].decode('UTF-8') }},
-			provincia {{ object['PROVINCIA'].decode('UTF-8') }},
-			comarca {{ object['COMARCA'].decode('UTF-8') }},
-			municipio {{ object['MUNICIPIO'].decode('UTF-8') }} se quemó una
-			superficie forestal de {{ object['SUPQUEMADA'] }}.
-			Hubieron {{ object['MUERTOS'] }} muertos y {{ object['HERIDOS'] }}
-			heridos. Se detectó en la fecha {{ object['FECHA'] }}. Se pudo
-			controlar en {{ object['TIME_CTRL'] }} minutos y extinguir
-			en {{ object['TIME_EXT'] }} minutos. La causa del incendio
-			fue {{ object['CAUSA'].decode('UTF-8') }}. En la extinción
-			del incendio participaron {{ object['PERSONAL'] }} personas,
-			{{ object['PESADOS'] }} vehiculos pesados y {{ object['AEREOS'] }}
-			medios aereos.</p>
+            <div id="map" style="width:100%; height:300px;"></div>
+	        <p>
+    	        Comunidad: {{ object['COMUNIDAD'].decode('UTF-8') }}<br>
+    			Provincia: {{ object['PROVINCIA'].decode('UTF-8') }}<br>
+    			Comarca: {{ object['COMARCA'].decode('UTF-8') }}<br>
+    			Municipio {{ object['MUNICIPIO'].decode('UTF-8') }}<br><br>
+    			Superficie forestal quemada: {{ object['SUPQUEMADA'] }}ha<br>
+    			Muertos: {{ object['MUERTOS'] }}<br>
+    			Heridos: {{ object['HERIDOS'] }}<br>
+    			Fecha: {{ object['FECHA'] }}.<br>
+    			Tiempo en controlarse: {{ object['TIME_CTRL'] }} minutos<br>
+    			Tiempo en extinguirse: {{ object['TIME_EXT'] }} minutos<br>
+    			Causa: {{ object['CAUSA'].decode('UTF-8') }}.<br>
+    			Extinción mediante: {{ object['PERSONAL'] }} personas, {{ object['PESADOS'] }} vehiculos pesados y {{ object['AEREOS'] }} medios aereos.
+			</p>
+			
+		<script type="text/javascript">
+	        var map = L.map('map').setView([{{ object['LATITUD'] }}, {{ object['LONGITUD'] }}], 10);
+	        var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+	            maxZoom: 18,
+	            attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+	            subdomains: ['otile1','otile2','otile3','otile4']
+	        });
+	        map.addLayer(mapquestLayer);
+	        var marker = L.marker([{{ object['LATITUD'] }}, {{ object['LONGITUD'] }}]).addTo(map);
+	    </script>
     </body>
 </html>
