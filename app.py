@@ -1,8 +1,8 @@
 import os
 import csv
-from flask import Flask
+from flask import Flask, request, send_from_directory
 from flask import render_template
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 
 csv_path = './static/incendio.csv'
 csv_obj = csv.DictReader(open(csv_path, 'r'))
@@ -14,6 +14,11 @@ def index():
     return render_template('index.html',
         object_list=csv_list,
     )
+
+@app.route('/libs/<path:path>')
+def send_js(path):
+    return send_from_directory('libs', path)
+
 @app.route('/<number>/')
 def detail(number):
     return render_template('detail.html',
