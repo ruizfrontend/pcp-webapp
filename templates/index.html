@@ -3,13 +3,32 @@
     <head></head>
     <body>
         <h1>Incendios en España entre 2004 y 2014</h1>
-        <table border=1 cellpadding=7>
-            <tr>
-                <th>Comunidad</th>
-            </tr>
-            
-            {{ object_list }}
-            
-        </table>
+	    <table border=1 cellpadding=7>
+	        <tr>
+	            <th>Superficie Forestal Quemada</th>
+	            <th>Fecha</th>
+	            <th>Muertos</th>
+	            <th>Heridos</th>
+	            <th>Comunidad</th>
+	            <th>Provincia</th>
+	            <th>Comarca</th>
+	            <th>Causa</th>
+	            <th>Perdidas</th>
+	        </tr>
+	        
+		    {% for obj in object_list %}
+		        <tr>
+		            <td>{{ obj['SUPQUEMADA'] }}</td>
+		            <td>{{ obj['FECHA'] }}</td>
+		            <td>{{ obj['MUERTOS'] }}</td>
+		            <td>{{ obj['HERIDOS'] }}</td>
+		            <td>{{ obj['COMUNIDAD'].decode('UTF-8') }}</td>
+		            <td>{{ obj['PROVINCIA'].decode('UTF-8') }}</td>
+		            <td>{{ obj['COMARCA'].decode('UTF-8') }}</td>
+		            <td>{{ obj['CAUSA'].decode('UTF-8')  }}</td>
+		            <td>{{ obj['PERDIDAS'] }}</td>
+		        </tr>
+		    {% endfor %}
+		</table>
     </body>
 </html>
