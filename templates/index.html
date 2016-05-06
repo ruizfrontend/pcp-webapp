@@ -19,7 +19,7 @@
 		    {% for obj in object_list %}
 		        <tr>
 		            <td>{{ obj['SUPQUEMADA'] }}</td>
-		            <td>{{ obj['FECHA'] }}</td>
+		            <td><a href="{{ obj['IDPIF'] }}/">{{ obj['FECHA'] }}</a></td>
 		            <td>{{ obj['MUERTOS'] }}</td>
 		            <td>{{ obj['HERIDOS'] }}</td>
 		            <td>{{ obj['COMUNIDAD'].decode('UTF-8') }}</td>
