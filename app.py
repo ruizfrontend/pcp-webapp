@@ -15,15 +15,15 @@ def index():
         object_list=csv_list,
     )
 
-@app.route('/libs/<path:path>')
-def send_js(path):
-    return send_from_directory('libs', path)
-
 @app.route('/<number>/')
 def detail(number):
     return render_template('detail.html',
         object=csv_dict[number],
     )
+
+@app.route('/libs/<path:path>')
+def send_js(path):
+    return send_from_directory('libs', path)
 
 app.run(host=os.getenv('IP', '0.0.0.0'), port=int(os.getenv('PORT', 8080)))
 
