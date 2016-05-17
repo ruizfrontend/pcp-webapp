@@ -61,7 +61,7 @@
 	            <th>Perdidas</th>
 	        </tr>
 	        
-		    {% for obj in object_list %}
+		    {% for obj in object_list[:5] %}
 		        <tr>
 		            <td>{{ obj['SUPQUEMADA'] }}</td>
 		            <td><a href="{{ obj['IDPIF'] }}/">{{ obj['FECHA'] }}</a></td>
