@@ -16,13 +16,14 @@ def index():
         object_list=csv_list,
     )
 
+@app.route('/data.json')
+def allJSON():
+    return json.dumps(csv_list)
+    
 @app.route('/<number>.json')
 def detailJSON(number):
     return jsonify(csv_dict[number])
     
-@app.route('/data.json')
-def allJSON():
-    return json.dumps(csv_list)
 
 @app.route('/<number>/')
 def detail(number):
