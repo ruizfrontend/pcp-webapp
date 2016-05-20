@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+    <head>
+		<meta name="Incendios en España"  content="text/html;"
+			http-equiv="content-type" charset="utf-8">
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+        <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+	</head>
+    <body>
+        <h1>Incendio de ANDALUCIA</h1>
+            <div id="map" style="width:100%; height:300px;"></div>
+	        <p>
+    	        Comunidad: ANDALUCIA<br>
+    			Provincia: JAEN<br>
+    			Comarca: SIERRA MORENA<br>
+    			Municipio ALDEAQUEMADA<br><br>
+    			Superficie forestal quemada: 7136.6000ha<br>
+    			Muertos: 0<br>
+    			Heridos: 0<br>
+    			Fecha: 2004-08-26.<br>
+    			Tiempo en controlarse: 1310 minutos<br>
+    			Tiempo en extinguirse: 5480 minutos<br>
+    			Causa: Sin datos.<br>
+    			Extinción mediante: 632 personas, 45 vehiculos pesados y 26 medios aereos.
+			</p>
+			
+		<script type="text/javascript">
+	        var map = L.map('map').setView([38.43810000, -3.31853100], 10);
+	        var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+	            maxZoom: 18,
+	            attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+	            subdomains: ['otile1','otile2','otile3','otile4']
+	        });
+	        map.addLayer(mapquestLayer);
+	        var marker = L.marker([38.43810000, -3.31853100]).addTo(map);
+	    </script>
+    </body>
+</html>

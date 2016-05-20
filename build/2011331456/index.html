@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+    <head>
+		<meta name="Incendios en España"  content="text/html;"
+			http-equiv="content-type" charset="utf-8">
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+        <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+	</head>
+    <body>
+        <h1>Incendio de ASTURIAS</h1>
+            <div id="map" style="width:100%; height:300px;"></div>
+	        <p>
+    	        Comunidad: ASTURIAS<br>
+    			Provincia: ASTURIAS<br>
+    			Comarca: NARCEA<br>
+    			Municipio CANGAS DEL NARCEA<br><br>
+    			Superficie forestal quemada: 727.2700ha<br>
+    			Muertos: 0<br>
+    			Heridos: 0<br>
+    			Fecha: 2011-10-16.<br>
+    			Tiempo en controlarse: 3425 minutos<br>
+    			Tiempo en extinguirse: 4358 minutos<br>
+    			Causa: INCENDIO REPRODUCIDO.<br>
+    			Extinción mediante: 40 personas, 3 vehiculos pesados y 1 medios aereos.
+			</p>
+			
+		<script type="text/javascript">
+	        var map = L.map('map').setView([43.12251400, -6.65286700], 10);
+	        var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+	            maxZoom: 18,
+	            attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+	            subdomains: ['otile1','otile2','otile3','otile4']
+	        });
+	        map.addLayer(mapquestLayer);
+	        var marker = L.marker([43.12251400, -6.65286700]).addTo(map);
+	    </script>
+    </body>
+</html>

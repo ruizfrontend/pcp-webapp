@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+    <head>
+		<meta name="Incendios en España"  content="text/html;"
+			http-equiv="content-type" charset="utf-8">
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+        <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+	</head>
+    <body>
+        <h1>Incendio de CATALUÑA</h1>
+            <div id="map" style="width:100%; height:300px;"></div>
+	        <p>
+    	        Comunidad: CATALUÑA<br>
+    			Provincia: TARRAGONA<br>
+    			Comarca: TERRA ALTA<br>
+    			Municipio HORTA DE SANT JOAN<br><br>
+    			Superficie forestal quemada: 847.9000ha<br>
+    			Muertos: 5<br>
+    			Heridos: 1<br>
+    			Fecha: 2009-07-20.<br>
+    			Tiempo en controlarse: 5156 minutos<br>
+    			Tiempo en extinguirse: 20141 minutos<br>
+    			Causa: HOGUERAS.<br>
+    			Extinción mediante: 1293 personas, 99 vehiculos pesados y 21 medios aereos.
+			</p>
+			
+		<script type="text/javascript">
+	        var map = L.map('map').setView([40.92540500, 0.34094600], 10);
+	        var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+	            maxZoom: 18,
+	            attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+	            subdomains: ['otile1','otile2','otile3','otile4']
+	        });
+	        map.addLayer(mapquestLayer);
+	        var marker = L.marker([40.92540500, 0.34094600]).addTo(map);
+	    </script>
+    </body>
+</html>

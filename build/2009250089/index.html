@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+    <head>
+		<meta name="Incendios en España"  content="text/html;"
+			http-equiv="content-type" charset="utf-8">
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+        <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+	</head>
+    <body>
+        <h1>Incendio de CATALUÑA</h1>
+            <div id="map" style="width:100%; height:300px;"></div>
+	        <p>
+    	        Comunidad: CATALUÑA<br>
+    			Provincia: LLEIDA<br>
+    			Comarca: L URGELL<br>
+    			Municipio AGRAMUNT<br><br>
+    			Superficie forestal quemada: 1443.0000ha<br>
+    			Muertos: 0<br>
+    			Heridos: 0<br>
+    			Fecha: 2009-07-17.<br>
+    			Tiempo en controlarse: 1712 minutos<br>
+    			Tiempo en extinguirse: 6755 minutos<br>
+    			Causa: LÍNEAS ELÉCTRICAS.<br>
+    			Extinción mediante: 315 personas, 50 vehiculos pesados y 10 medios aereos.
+			</p>
+			
+		<script type="text/javascript">
+	        var map = L.map('map').setView([41.83789600, 1.09147900], 10);
+	        var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+	            maxZoom: 18,
+	            attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+	            subdomains: ['otile1','otile2','otile3','otile4']
+	        });
+	        map.addLayer(mapquestLayer);
+	        var marker = L.marker([41.83789600, 1.09147900]).addTo(map);
+	    </script>
+    </body>
+</html>

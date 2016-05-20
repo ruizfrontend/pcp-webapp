@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+    <head>
+		<meta name="Incendios en España"  content="text/html;"
+			http-equiv="content-type" charset="utf-8">
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+        <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+	</head>
+    <body>
+        <h1>Incendio de ANDALUCIA</h1>
+            <div id="map" style="width:100%; height:300px;"></div>
+	        <p>
+    	        Comunidad: ANDALUCIA<br>
+    			Provincia: HUELVA<br>
+    			Comarca: CUENCA MINERA<br>
+    			Municipio MINAS DE RIOTINTO<br><br>
+    			Superficie forestal quemada: 29867.0000ha<br>
+    			Muertos: 0<br>
+    			Heridos: 1<br>
+    			Fecha: 2004-07-27.<br>
+    			Tiempo en controlarse: 9625 minutos<br>
+    			Tiempo en extinguirse: 11065 minutos<br>
+    			Causa: Provocados por pirómanos.<br>
+    			Extinción mediante: 963 personas, 55 vehiculos pesados y 17 medios aereos.
+			</p>
+			
+		<script type="text/javascript">
+	        var map = L.map('map').setView([37.69176000, -6.59999000], 10);
+	        var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+	            maxZoom: 18,
+	            attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+	            subdomains: ['otile1','otile2','otile3','otile4']
+	        });
+	        map.addLayer(mapquestLayer);
+	        var marker = L.marker([37.69176000, -6.59999000]).addTo(map);
+	    </script>
+    </body>
+</html>

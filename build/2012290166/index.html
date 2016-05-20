@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+    <head>
+		<meta name="Incendios en España"  content="text/html;"
+			http-equiv="content-type" charset="utf-8">
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+        <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+	</head>
+    <body>
+        <h1>Incendio de ANDALUCIA</h1>
+            <div id="map" style="width:100%; height:300px;"></div>
+	        <p>
+    	        Comunidad: ANDALUCIA<br>
+    			Provincia: MALAGA<br>
+    			Comarca: VALLE DE GUADALHORCE<br>
+    			Municipio COÍN<br><br>
+    			Superficie forestal quemada: 8037.1400ha<br>
+    			Muertos: 0<br>
+    			Heridos: 0<br>
+    			Fecha: 2012-08-30.<br>
+    			Tiempo en controlarse: 4300 minutos<br>
+    			Tiempo en extinguirse: 6550 minutos<br>
+    			Causa: QUEMA AGRÍCOLA (QUEMA DE RESTOS DE PODA).<br>
+    			Extinción mediante: 1869 personas, 83 vehiculos pesados y 43 medios aereos.
+			</p>
+			
+		<script type="text/javascript">
+	        var map = L.map('map').setView([36.61017700, -4.73519100], 10);
+	        var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+	            maxZoom: 18,
+	            attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+	            subdomains: ['otile1','otile2','otile3','otile4']
+	        });
+	        map.addLayer(mapquestLayer);
+	        var marker = L.marker([36.61017700, -4.73519100]).addTo(map);
+	    </script>
+    </body>
+</html>
