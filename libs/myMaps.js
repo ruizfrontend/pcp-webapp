@@ -19,7 +19,21 @@ $(function(){
 		$.ajax('/' + incendio + '.json')
 			.done(function(data){
 				console.log(data);
-				$modal.modal()
+				$modal
+					.find('h4').text('Incendio de ' + data['FECHA'] + ' en ' + data['MUNICIPIO']).end()
+					.find('.modal-body').html('Comunidad: ' + data['COMUNIDAD'] + '<br>\
+								Provincia: ' + data['PROVINCIA'] + '<br>\
+								Comarca: ' + data['COMARCA'] + '<br>\
+								Municipio ' + data['MUNICIPIO'] + '<br><br>\
+								Superficie forestal quemada: ' + data['SUPQUEMADA'] + 'ha<br>\
+								Muertos: ' + data['MUERTOS'] + '<br>\
+								Heridos: ' + data['HERIDOS'] + '<br>\
+								Fecha: ' + data['FECHA'] + '<br>\
+								Tiempo en controlarse: ' + data['TIME_CTRL'] + 'minutos<br>\
+								Tiempo en extinguirse: ' + data['TIME_EXT'] + 'minutos<br>\
+								Causa: ' + data['CAUSA'] + '<br>\
+								Extinción mediante: ' + data['PERSONAL'] + ' personas, ' + data['PESADOS'] + ' vehiculos pesados y ' + data['AEREOS'] + ' medios aereos.').end()
+					.modal()
 			})
 			.fail(function(){ console.log('No se pudo cargar el incendio'); })
 		
