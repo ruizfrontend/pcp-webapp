@@ -34,10 +34,6 @@ def detail(number):
 def send_js(path):
     return send_from_directory('libs', path)
 
-@app.route('/incendio.csv')
-def send_csv():
-    return send_from_directory('static', 'incendio.csv')
-
 app.run(host=os.getenv('IP', '0.0.0.0'), port=int(os.getenv('PORT', 8080)))
 
 if __name__ == '__main__':
