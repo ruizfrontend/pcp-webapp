@@ -23,6 +23,7 @@
 	    <table id="table" class="table table-striped table-hover table-responsive" style="display: block;">
   			<thead>
 		        <tr>
+		            <th></th>
 		            <th>Superficie Quemada</th>
 		            <th>Fecha</th>
 		            <th>Muertos</th>
@@ -38,8 +39,9 @@
   			<tbody>
 			    {% for obj in object_list | sort(attribute='FECHA') %}
 			        <tr>
+			            <td><a class="btn btn-primary" href="{{ obj['IDPIF'] }}/">Detalle</a></td>
 			            <td>{{ obj['SUPQUEMADA'] }}</td>
-			            <td><a href="{{ obj['IDPIF'] }}/">{{ obj['FECHA'] }}</a></td>
+			            <td>{{ obj['FECHA'] }}</td>
 			            <td>{{ obj['MUERTOS'] }}</td>
 			            <td>{{ obj['HERIDOS'] }}</td>
 			            <td>{{ obj['COMUNIDAD'].decode('UTF-8') }}</td>
