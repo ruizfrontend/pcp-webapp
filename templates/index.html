@@ -15,38 +15,68 @@
 	
     </head>
     <body class="pageHome">
+    	
+    	<nav data-spy="affix" class="navbar navbar-inverse" style="width: 100%; z-index: 10000;">
+		  <a class="navbar-brand" href="#">Mapa de incendios</a>
+		  <ul class="nav navbar-nav">
+		    <li class="nav-item active">
+		      <a class="nav-link" href="/">Inicio</a>
+		    </li>
+		    <li class="nav-item">
+		      <a class="nav-link" target="_blank" href="https://github.com/ruizfrontend/pcp-webapp">Repositorio</a>
+		    </li>
+		  </ul>
+		  <ul class="nav navbar-nav pull-right">
+		    <li class="nav-item">
+		      <a class="nav-link" target="_blank" href="http://www.unir.net/">unir 2016</a>
+		    </li>
+		  </ul>
+		</nav>
 		
-        <h1>Incendios en España entre 2004 y 2014</h1>
+		<br><br><br><br>
+    	<div class="container">
+			<div class="jumbotron jumbotron-fluid">
+			  <div class="container">
+			    <h1 class="display-3">Mapa de incendios de España</h1>
+			    <p class="lead">Ejercicio del curso 'el periodista como programador'</p>
+			    <p>unir. 2016</p>
+			  </div>
+			</div>
+		</div>
         
-		<div id="map" style="width:100%; height:300px;"></div>
+		<div id="map" style="width:100%; height:500px;"></div><br>
 
-	    <table id="table" class="table table-striped table-hover table-responsive" style="display: block;">
-  			<thead>
-		        <tr>
-		            <th></th>
-		            <th>Municipio</th>
-		            <th>Comunidad</th>
-		            <th>Provincia</th>
-		            <th>Superficie Quemada</th>
-		            <th>Fecha</th>
-		            <th>Víctimas</th>
-		        </tr>
-  			</thead>
-	        
-  			<tbody>
-			    {% for obj in object_list | sort(attribute='FECHA') %}
-			        <tr>
-			            <td><a class="btn-incendio btn btn-primary" data-incendio="{{ obj['IDPIF'] }}" href="{{ obj['IDPIF'] }}/">Detalle</a></td>
-			            <td>{{ obj['MUNICIPIO'].decode('UTF-8') }}</td>
-			            <td>{{ obj['COMUNIDAD'].decode('UTF-8') }}</td>
-			            <td>{{ obj['PROVINCIA'].decode('UTF-8') }}</td>
-			            <td>{{ obj['SUPQUEMADA'] }} m2</td>
-			            <td>{{ obj['FECHA'] }}</td>
-			            <td>{{ obj['MUERTOS'] }}</td>
-			        </tr>
-			    {% endfor %}
-			 </tbody>
-		</table>
+		<div class="container">
+			<div style=" width: 100%; overflow-x: auto;">
+			    <table id="table" class="table table-striped table-hover table-responsive">
+		  			<thead>
+				        <tr>
+				            <th></th>
+				            <th>Municipio</th>
+				            <th>Comunidad</th>
+				            <th>Provincia</th>
+				            <th>Superficie Quemada</th>
+				            <th>Fecha</th>
+				            <th>Víctimas</th>
+				        </tr>
+		  			</thead>
+			        
+		  			<tbody>
+					    {% for obj in object_list | sort(attribute='FECHA') %}
+					        <tr>
+					            <td><a class="btn-incendio btn btn-primary" data-incendio="{{ obj['IDPIF'] }}" href="{{ obj['IDPIF'] }}/">Detalle</a></td>
+					            <td>{{ obj['MUNICIPIO'].decode('UTF-8') }}</td>
+					            <td>{{ obj['COMUNIDAD'].decode('UTF-8') }}</td>
+					            <td>{{ obj['PROVINCIA'].decode('UTF-8') }}</td>
+					            <td>{{ obj['SUPQUEMADA'] }} m2</td>
+					            <td>{{ obj['FECHA'] }}</td>
+					            <td>{{ obj['MUERTOS'] }}</td>
+					        </tr>
+					    {% endfor %}
+					 </tbody>
+				</table>
+			</div>
+		</div>
 		
 	</div>
 	

@@ -11,24 +11,48 @@
 	
 	</head>
     <body class="pageDetail">
-        <h1>Incendio de {{ object['COMUNIDAD'].decode('UTF-8') }}</h1>
+    	
+    	<nav data-spy="affix" class="navbar navbar-inverse" style="width: 100%; z-index: 10000;">
+		  <a class="navbar-brand" href="#">Mapa de incendios</a>
+		  <ul class="nav navbar-nav">
+		    <li class="nav-item active">
+		      <a class="nav-link" href="/">Inicio</a>
+		    </li>
+		    <li class="nav-item">
+		      <a class="nav-link" target="_blank" href="https://github.com/ruizfrontend/pcp-webapp">Repositorio</a>
+		    </li>
+		  </ul>
+		  <ul class="nav navbar-nav pull-right">
+		    <li class="nav-item">
+		      <a class="nav-link" target="_blank" href="http://www.unir.net/">unir 2016</a>
+		    </li>
+		  </ul>
+		</nav>
+		
+		<br><br><br><br>
+		
+		<div class="container">
+        	<h1>Incendio de {{ object['MUNICIPIO'].decode('UTF-8') }}</h1>
+        </div>
         
         <div id="map" style="width:100%; height:300px;"></div>
         
-        <p>
-	        Comunidad: {{ object['COMUNIDAD'].decode('UTF-8') }}<br>
-			Provincia: {{ object['PROVINCIA'].decode('UTF-8') }}<br>
-			Comarca: {{ object['COMARCA'].decode('UTF-8') }}<br>
-			Municipio {{ object['MUNICIPIO'].decode('UTF-8') }}<br><br>
-			Superficie forestal quemada: {{ object['SUPQUEMADA'] }}ha<br>
-			Muertos: {{ object['MUERTOS'] }}<br>
-			Heridos: {{ object['HERIDOS'] }}<br>
-			Fecha: {{ object['FECHA'] }}.<br>
-			Tiempo en controlarse: {{ object['TIME_CTRL'] }} minutos<br>
-			Tiempo en extinguirse: {{ object['TIME_EXT'] }} minutos<br>
-			Causa: {{ object['CAUSA'].decode('UTF-8') }}.<br>
-			Extinción mediante: {{ object['PERSONAL'] }} personas, {{ object['PESADOS'] }} vehiculos pesados y {{ object['AEREOS'] }} medios aereos.
-		</p>
+		<div class="container">
+	        <p>
+		        Comunidad: {{ object['COMUNIDAD'].decode('UTF-8') }}<br>
+				Provincia: {{ object['PROVINCIA'].decode('UTF-8') }}<br>
+				Comarca: {{ object['COMARCA'].decode('UTF-8') }}<br>
+				Municipio {{ object['MUNICIPIO'].decode('UTF-8') }}<br><br>
+				Superficie forestal quemada: {{ object['SUPQUEMADA'] }}ha<br>
+				Muertos: {{ object['MUERTOS'] }}<br>
+				Heridos: {{ object['HERIDOS'] }}<br>
+				Fecha: {{ object['FECHA'] }}.<br>
+				Tiempo en controlarse: {{ object['TIME_CTRL'] }} minutos<br>
+				Tiempo en extinguirse: {{ object['TIME_EXT'] }} minutos<br>
+				Causa: {{ object['CAUSA'].decode('UTF-8') }}.<br>
+				Extinción mediante: {{ object['PERSONAL'] }} personas, {{ object['PESADOS'] }} vehiculos pesados y {{ object['AEREOS'] }} medios aereos.
+			</p>
+        </div>
 	    
 	    <script>
 window.detail = {
