@@ -1,5 +1,9 @@
 /*global $*/
 
+$(function(){
+	$("#table").tablesorter();
+})
+
 	// carga página de detalle
 var loadDetail = function(){
     
