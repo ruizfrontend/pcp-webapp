@@ -22,18 +22,22 @@ $(function(){
 				$modal
 					.find('h4').text('Incendio de ' + data['FECHA'] + ' en ' + data['MUNICIPIO']).end()
 					.find('.btn-detalle').attr('href', '/' + data['IDPIF']).end()
-					.find('.modal-body').html('Comunidad: ' + data['COMUNIDAD'] + '<br>\
-								Provincia: ' + data['PROVINCIA'] + '<br>\
-								Comarca: ' + data['COMARCA'] + '<br>\
-								Municipio ' + data['MUNICIPIO'] + '<br><br>\
-								Superficie forestal quemada: ' + data['SUPQUEMADA'] + 'ha<br>\
-								Muertos: ' + data['MUERTOS'] + '<br>\
-								Heridos: ' + data['HERIDOS'] + '<br>\
-								Fecha: ' + data['FECHA'] + '<br>\
-								Tiempo en controlarse: ' + data['TIME_CTRL'] + 'minutos<br>\
-								Tiempo en extinguirse: ' + data['TIME_EXT'] + 'minutos<br>\
-								Causa: ' + data['CAUSA'] + '<br>\
-								Extinción mediante: ' + data['PERSONAL'] + ' personas, ' + data['PESADOS'] + ' vehiculos pesados y ' + data['AEREOS'] + ' medios aereos.').end()
+					.find('.modal-body').html('')
+						.append('<dl class="dl-horizontal">')
+						.find('dl')
+							.append('<dt>Comunidad:</dt><dd>' + data['COMUNIDAD'] + '</dd>')
+							.append('<dt>Provincia:</dt><dd>' + data['PROVINCIA'] + '</dd>')
+							.append('<dt>Comarca:</dt><dd>' + data['COMARCA'] + '</dd>')
+							.append('<dt>Municipio:</dt><dd>' + data['SUPQUEMADA'] + '</dd>')
+							.append('<dt>Superficie forestal quemada:</dt><dd>' + data['MUERTOS'] + '</dd><br>')
+							.append('<dt>Muertos:</dt><dd>' + data['HERIDOS'] + '</dd>')
+							.append('<dt>Fecha:</dt><dd>' + data['FECHA'] + '</dd>')
+							.append('<dt>Tiempo en controlarse:</dt><dd>' + data['TIME_CTRL'] + '</dd>')
+							.append('<dt>Tiempo en extinguirse:</dt><dd>' + data['TIME_EXT'] + '</dd>')
+							.append('<dt>Causa:</dt><dd>' + data['CAUSA'] + '</dd>')
+							.append('<dt>Medios de extinción:</dt><dd>' + data['PERSONAL'] + ' personas, ' + data['PESADOS'] + ' vehiculos pesados y ' + data['AEREOS'] + '</dd>')
+							.end()
+						.end()
 					.modal()
 			})
 			.fail(function(){ console.log('No se pudo cargar el incendio'); })
