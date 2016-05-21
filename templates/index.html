@@ -17,9 +17,33 @@
         
 		<div id="map" style="width:100%; height:300px;"></div>
 
-	    {% for obj in object_list %}
-	    	<a href="{{ obj['IDPIF'] }}/">Incendio de fecha {{ obj['FECHA'] }} en {{ obj['PROVINCIA'].decode('UTF-8') }}</a><br>
-	    {% endfor %}
+	    <table border=1 cellpadding=7>
+	        <tr>
+	            <th>Superficie Quemada</th>
+	            <th>Fecha</th>
+	            <th>Muertos</th>
+	            <th>Heridos</th>
+	            <th>Comunidad</th>
+	            <th>Provincia</th>
+	            <th>Comarca</th>
+	            <th>Causa</th>
+	            <th>Perdidas</th>
+	        </tr>
+	        
+		    {% for obj in object_list %}
+		        <tr>
+		            <td>{{ obj['SUPQUEMADA'] }}</td>
+		            <td><a href="{{ obj['IDPIF'] }}/">{{ obj['FECHA'] }}</a></td>
+		            <td>{{ obj['MUERTOS'] }}</td>
+		            <td>{{ obj['HERIDOS'] }}</td>
+		            <td>{{ obj['COMUNIDAD'].decode('UTF-8') }}</td>
+		            <td>{{ obj['PROVINCIA'].decode('UTF-8') }}</td>
+		            <td>{{ obj['COMARCA'].decode('UTF-8') }}</td>
+		            <td>{{ obj['CAUSA'].decode('UTF-8')  }}</td>
+		            <td>{{ obj['PERDIDAS'] }}</td>
+		        </tr>
+		    {% endfor %}
+		</table>
 
      	<script type="text/javascript" src="/libs/leaflet.js?"></script>
      	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
