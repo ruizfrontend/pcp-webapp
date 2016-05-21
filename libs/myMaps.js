@@ -1,6 +1,32 @@
 /*global $*/
 
 $(function(){
+	
+	    // inicializamos según el tipo de página
+	if($('body').hasClass('pageHome')) {
+	    // código para la home
+	    loadFullmap();
+	} else {
+	    // código para el detalle
+	    loadDetail();
+	}
+	
+	$('.btn-incendio').click(function(){
+		var $this = $(this);
+		var incendio = $this.data('incendio');
+		var $modal = $('#myModal');
+		
+		$.ajax('/' + incendio + '.json')
+			.done(function(data){
+				console.log(data);
+				$modal.modal()
+			})
+			.fail(function(){ console.log('No se pudo cargar el incendio'); })
+		
+			// evitamos la acción por defecto del link
+		return false;
+	});
+
 	$("#table").tablesorter();
 })
 
@@ -77,13 +103,4 @@ var mapInit = function(id, position, zoom) {
       });
       map.addLayer(mapquestLayer);
       return map;
-}
-
-    // inicializamos según el tipo de página
-if($('body').hasClass('pageHome')) {
-    // código para la home
-    loadFullmap();
-} else {
-    // código para el detalle
-    loadDetail();
 }
