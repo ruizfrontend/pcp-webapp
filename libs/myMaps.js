@@ -21,6 +21,7 @@ $(function(){
 				console.log(data);
 				$modal
 					.find('h4').text('Incendio de ' + data['FECHA'] + ' en ' + data['MUNICIPIO']).end()
+					.find('.btn-detalle').attr('href', '/' + data['IDPIF']).end()
 					.find('.modal-body').html('Comunidad: ' + data['COMUNIDAD'] + '<br>\
 								Provincia: ' + data['PROVINCIA'] + '<br>\
 								Comarca: ' + data['COMARCA'] + '<br>\
