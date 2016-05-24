@@ -44,7 +44,7 @@
 			        
 				    {% for obj in object_list %}
 				        <tr>
-				            <td><a class="btn btn-primary" href="{{ obj['IDPIF'] }}/">Ver detalle</a></td>
+				            <td><a data-incendio="{{ obj['IDPIF'] }}" class="btn btn-primary btn-detail" href="{{ obj['IDPIF'] }}/">Ver detalle</a></td>
 				            <td>{{ obj['FECHA'] }}</td>
 				            <td>{{ obj['PROVINCIA'].decode('UTF-8') }}</td>
 				            <td>{{ obj['MUNICIPIO'].decode('UTF-8') }}</td>

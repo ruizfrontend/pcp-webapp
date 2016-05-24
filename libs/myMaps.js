@@ -60,6 +60,27 @@ var loadFullmap = function(){
 			})
 			
 	};
+
+	$('.btn-detail').click(function(e){
+		
+		var incendio = $(this).data('incendio');
+		
+		$.ajax(incendio + '.json')
+			.done(function(data){
+				
+				$('#myModal')
+					.find('.modal-title')
+						.text('Detalles del incendio de ' + data['MUNICIPIO'] + ' a fecha de ' + data['FECHA'])
+						.end()
+					.find('.modal-body p')
+						.text('Próximamente más información')
+						.end()
+					.modal('show');
+					
+				
+			})
+		return false;
+	});
 }
 
 
