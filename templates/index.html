@@ -13,8 +13,6 @@
 		<!-- Optional theme -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 		
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 		
 		<style type="text/css">
 			.container-fluid { max-width: 1000px; }
@@ -25,6 +23,9 @@
     	<div class="container-fluid">
 			<div class="jumbotron">
 	        	<h1>Incendios en España entre 2004 y 2014</h1>
+	        	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+				  Launch demo modal
+				</button>
 			</div>
 	    </div>
 	    
@@ -32,37 +33,50 @@
 	
     	<div class="container-fluid">
 
-		    <table border=1 cellpadding=7>
-		        <tr>
-		            <th>Superficie Quemada</th>
-		            <th>Fecha</th>
-		            <th>Muertos</th>
-		            <th>Heridos</th>
-		            <th>Comunidad</th>
-		            <th>Provincia</th>
-		            <th>Comarca</th>
-		            <th>Causa</th>
-		            <th>Perdidas</th>
-		        </tr>
-		        
-			    {% for obj in object_list %}
+			<div class="table-responsive">
+			    <table class="table table-striped table-hover">
 			        <tr>
-			            <td>{{ obj['SUPQUEMADA'] }}</td>
-			            <td><a href="{{ obj['IDPIF'] }}/">{{ obj['FECHA'] }}</a></td>
-			            <td>{{ obj['MUERTOS'] }}</td>
-			            <td>{{ obj['HERIDOS'] }}</td>
-			            <td>{{ obj['COMUNIDAD'].decode('UTF-8') }}</td>
-			            <td>{{ obj['PROVINCIA'].decode('UTF-8') }}</td>
-			            <td>{{ obj['COMARCA'].decode('UTF-8') }}</td>
-			            <td>{{ obj['CAUSA'].decode('UTF-8')  }}</td>
-			            <td>{{ obj['PERDIDAS'] }}</td>
+			            <th></th>
+			            <th>Fecha</th>
+			            <th>Provincia</th>
+			            <th>Municipio</th>
 			        </tr>
-			    {% endfor %}
-			</table>
+			        
+				    {% for obj in object_list %}
+				        <tr>
+				            <td><a class="btn btn-primary" href="{{ obj['IDPIF'] }}/">Ver detalle</a></td>
+				            <td>{{ obj['FECHA'] }}</td>
+				            <td>{{ obj['PROVINCIA'].decode('UTF-8') }}</td>
+				            <td>{{ obj['MUNICIPIO'].decode('UTF-8') }}</td>
+				        </tr>
+				    {% endfor %}
+				</table>
+			</div>
 	    </div>
 	    
+	    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title">Aquí tendremos un incendio</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p>Helñlow</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+		
      	<script type="text/javascript" src="/libs/leaflet.js?"></script>
      	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+     	
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		
      	<script type="text/javascript" src="/libs/myMaps.js"></script>
      
     </body>
