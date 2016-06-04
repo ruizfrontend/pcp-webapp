@@ -43,9 +43,17 @@
 			    <p>unir. 2016</p>
 			  </div>
 			</div>
+			
+			{% for provincia, total in provincias.items() %}
+				{{ provincia.decode('UTF-8') }}: {{ total }} incendios
+			{% endfor %}
+			
+			{% for year, total in years.items() %}
+				{{ year }}: {{ total }} incendios
+			{% endfor %}
 		</div>
         
-		<div id="map" style="width:100%; height:500px;"></div><br>
+		<div id="map"></div><br>
 
 		<div class="container">
 			<h2>Últimos incencios</h2>
@@ -61,7 +69,7 @@
 				            <th>Fecha</th>
 				            <th>Víctimas</th>
 				        </tr>
-		  			</thead>
+		  			</theamd>
 			        
 		  			<tbody>
 					    {% for obj in fires_sorted[-10:] | sort(attribute='FECHA') %}

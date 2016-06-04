@@ -17,7 +17,7 @@ csv_dict = dict([[o['IDPIF'], o] for o in csv_list])
     # agrupado de provincias
 provs_dict = {}
 for k, g in groupby(csv_list, key=lambda fire: fire['PROVINCIA']):
-    provs_dict[k] = g
+    provs_dict[k] = len(list(g))
 
 
     # añadimos campo año
@@ -28,7 +28,7 @@ for fire in csv_list:
 years_dict = {}
 csv_years = sorted(csv_list, key=lambda fire: fire['YEAR'])
 for k, g in groupby(csv_years, key=lambda fire: fire['YEAR']):
-    years_dict[k] = g
+    years_dict[k] = len(list(g))
 
     #rutas
 @app.route("/")
@@ -36,7 +36,8 @@ def index():
     return render_template('index.html',
         object_list=csv_list,
         provincias=provs_dict,
-        fires_sorted=csv_years
+        fires_sorted=csv_years,
+        years=years_dict
     )
 
 @app.route('/data.json')
