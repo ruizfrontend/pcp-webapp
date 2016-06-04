@@ -44,13 +44,26 @@
 			  </div>
 			</div>
 			
-			{% for provincia, total in provincias.items() %}
-				{{ provincia.decode('UTF-8') }}: {{ total }} incendios
-			{% endfor %}
+			<div id="provs">
+				<h2>Filtra por año</h2>
+				<ul class="btn-group">
+					<li class="btn btn-primary">Ver todos<br><span>{{ fires_sorted | count }}</span></li>
+					{% for provincia, total in provincias.items() | sort %}
+						<li class="btn btn-default">{{ provincia.decode('UTF-8') }}<br><span>{{ total }}</span></span>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
 			
-			{% for year, total in years.items() %}
-				{{ year }}: {{ total }} incendios
-			{% endfor %}
+			<div id="years">
+				<h2>Filtra por año</h2>
+				<ul class="btn-group">
+					<li class="btn btn-primary">Ver todos<br><span>{{ fires_sorted | count }}</span></li>
+					{% for year, total in years.items() | sort %}
+						<li class="btn btn-default">{{ year }}<br><span>{{ total }}</span></li>
+					{% endfor %}
+				</ul>
+			</div>
 		</div>
         
 		<div id="map"></div><br>
