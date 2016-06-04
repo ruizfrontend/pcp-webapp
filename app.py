@@ -20,11 +20,23 @@ for k, g in groupby(csv_list, key=lambda fire: fire['PROVINCIA']):
     provs_dict[k] = g
 
 
+    # añadimos campo año
+for fire in csv_list:
+    fire['YEAR'] = fire['FECHA'].split('-')[0]
+
+    # agrupado de años
+years_dict = {}
+csv_years = sorted(csv_list, key=lambda fire: fire['YEAR'])
+for k, g in groupby(csv_years, key=lambda fire: fire['YEAR']):
+    years_dict[k] = g
+
+    #rutas
 @app.route("/")
 def index():
     return render_template('index.html',
         object_list=csv_list,
-        provincias=provs_dict
+        provincias=provs_dict,
+        fires_sorted=csv_years
     )
 
 @app.route('/data.json')
