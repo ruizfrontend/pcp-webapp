@@ -48,6 +48,7 @@
 		<div id="map" style="width:100%; height:500px;"></div><br>
 
 		<div class="container">
+			<h2>Últimos incencios</h2>
 			<div style=" width: 100%; overflow-x: auto;">
 			    <table id="table" class="table table-striped table-hover table-responsive">
 		  			<thead>
@@ -63,7 +64,7 @@
 		  			</thead>
 			        
 		  			<tbody>
-					    {% for obj in object_list | sort(attribute='FECHA') %}
+					    {% for obj in fires_sorted[-10:] | sort(attribute='FECHA') %}
 					        <tr>
 					            <td><a class="btn-incendio btn btn-primary" data-incendio="{{ obj['IDPIF'] }}" href="{{ obj['IDPIF'] }}/">Detalle</a></td>
 					            <td>{{ obj['MUNICIPIO'].decode('UTF-8') }}</td>
