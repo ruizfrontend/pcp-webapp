@@ -1,19 +1,30 @@
+# coding=utf-8
+
 import os
 import csv
 import json
+from itertools import groupby
 from flask import Flask, request, send_from_directory, jsonify
 from flask import render_template
 app = Flask(__name__, static_url_path='')
 
 csv_path = './static/incendio.csv'
 csv_obj = csv.DictReader(open(csv_path, 'r'))
-csv_list = list(csv_obj)
+csv_list = sorted(list(csv_obj), key=lambda fire: fire['PROVINCIA']) # ordenamos previamente por provincia
 csv_dict = dict([[o['IDPIF'], o] for o in csv_list])
+
+
+    # agrupado de provincias
+provs_dict = {}
+for k, g in groupby(csv_list, key=lambda fire: fire['PROVINCIA']):
+    provs_dict[k] = g
+
 
 @app.route("/")
 def index():
     return render_template('index.html',
         object_list=csv_list,
+        provincias=provs_dict
     )
 
 @app.route('/data.json')
