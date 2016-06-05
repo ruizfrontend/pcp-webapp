@@ -49,7 +49,7 @@
 				<ul class="btn-group">
 					<li class="btn btn-primary active">Ver todos<br><span>{{ fires_sorted | count }}</span></li>
 					{% for year, total in years.items() | sort %}
-						<li class="btn btn-default">{{ year }}<br><span>{{ total }}</span></li>
+						<li class="btn btn-default"><span class="year">{{ year }}</span><br><span>{{ total }}</span></li>
 					{% endfor %}
 				</ul>
 			</div>
@@ -57,11 +57,6 @@
 			<div id="provs" class="graph">
 				<h2>Incendios por provincia</h2>
 				<ul>
-					<li>
-						<div class="title">Ver todos</div>
-						<div class="dato">{{ fires_sorted | count }} incendios</div>
-					</li>
-					
 					{% for provincia, total in provincias.items() | sort %}
 						<li>
 							<div class="title">{{ provincia.decode('UTF-8') }}</div>

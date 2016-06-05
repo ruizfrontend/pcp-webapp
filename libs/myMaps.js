@@ -101,7 +101,7 @@ var drawGraphs = function() {
 	
 var homeInit = function(data){
 			
-	window.incendios = data;
+	window.incendios = JSON.parse(data);
 	
 	drawGraphs();
 	
@@ -114,6 +114,29 @@ var homeInit = function(data){
 			// cambiamos la opción activa en el menú
 		$('#years .btn.active').removeClass('active');
 		$btn.addClass('active');
+		
+			// el año del botón pulsado
+		var year = parseInt($btn.find('.year').html(), 10);
+		
+			// recorremos los incendios y obtenemos los datos para la nueva gráfica
+		var incendiosYear = {};
+		for (var i = 0; i < incendios.length; i++) {
+			if(incendios[i]['YEAR'] == year){
+				if(!incendiosYear[incendios[i]['PROVINCIA']]) incendiosYear[incendios[i]['PROVINCIA']] = 0;
+				incendiosYear[incendios[i]['PROVINCIA']] ++;
+			}
+		}
+		
+		$('#provs li:gt(0)').each(function(){
+			// obtengo el valor del elemento
+		
+			var provincia = $(this).find('.title').text();
+			incendiosYear[provincia] = incendiosYear[provincia] ? incendiosYear[provincia] : 0;
+			$(this).find('.dato').text(incendiosYear[provincia] + ' incendios');
+		});
+		
+		drawGraphs();
+		
 	});
 	
 	return; 
