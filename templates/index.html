@@ -44,26 +44,34 @@
 			  </div>
 			</div>
 			
-			<div id="provs">
-				<h2>Filtra por año</h2>
-				<ul class="btn-group">
-					<li class="btn btn-primary">Ver todos<br><span>{{ fires_sorted | count }}</span></li>
-					{% for provincia, total in provincias.items() | sort %}
-						<li class="btn btn-default">{{ provincia.decode('UTF-8') }}<br><span>{{ total }}</span></span>
-						</li>
-					{% endfor %}
-				</ul>
-			</div>
-			
 			<div id="years">
 				<h2>Filtra por año</h2>
 				<ul class="btn-group">
-					<li class="btn btn-primary">Ver todos<br><span>{{ fires_sorted | count }}</span></li>
+					<li class="btn btn-primary active">Ver todos<br><span>{{ fires_sorted | count }}</span></li>
 					{% for year, total in years.items() | sort %}
 						<li class="btn btn-default">{{ year }}<br><span>{{ total }}</span></li>
 					{% endfor %}
 				</ul>
 			</div>
+			
+			<div id="provs" class="graph">
+				<h2>Incendios por provincia</h2>
+				<ul>
+					<li>
+						<div class="title">Ver todos</div>
+						<div class="dato">{{ fires_sorted | count }} incendios</div>
+					</li>
+					
+					{% for provincia, total in provincias.items() | sort %}
+						<li>
+							<div class="title">{{ provincia.decode('UTF-8') }}</div>
+							<div class="dato"span>{{ total }} incendios</div>
+							<div class="bar"><div class="bar-inn"></div></div>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+			
 		</div>
         
 		<div id="map"></div><br>
@@ -131,5 +139,21 @@
 	
  	<script type="text/javascript" src="/libs/myMaps.js"></script>
      
+	<style type="text/css">
+.graph li { display: block; clear: both; }	
+	.graph .title { font-size: 1.2em; width: 20%; float: left; }
+	.graph .dato { font-size: 1.2em; width: 20%; float: left; }
+	.graph .bar { width: 60%; height: 20px; float: left; }
+	.graph .bar-inn { height: 100%; background: red; width: 0;
+	    background: #FFB600;
+		box-shadow: inset 1px 1px 4px -1px black;
+		-webkit-transition: all 1s;
+		-moz-transition: all 1s;
+		-ms-transition: all 1s;
+		-o-transition: all 1s;
+		transition: all 1s;
+	}
+	</style>
+
     </body>
 </html>

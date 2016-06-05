@@ -62,59 +62,87 @@ var loadDetail = function(){
 	var marker = L.marker([detail['LATITUD'], detail['LONGITUD']]).addTo(map);
 }
 
-	// carga json con todos los puntos y los dibuja
+	// cambiamos la funcion para dibujar la gráfica
 var loadFullmap = function(){
-	$('body').
+
 	$.ajax('data.json')
+			// en cuanto esté llama a la función homeInit
 		.done(homeInit)
 		.fail(function(){
 			$('#map').append('<h2>No se pudieron obtener los datos<h2>');
 		})
-		
+
 }
 
-var homeInit = function(data){
-	function(data){
-			
-		return; 
 
-		if(!window.L) return $('#map').append('<h2>No se pudo dibujar el mapa.<h2>');
+var drawGraphs = function() {
+	var max = 0;
+	
+		// obtengo el mayor valor, que equivaldrá al 100%
+	$('#provs li:gt(0)').each(function(){
+			// obtengo el valor del elemento
+		var val = parseInt($(this).find('.dato').text());
 		
-		var puntos = $.parseJSON(data);
-		
-		var map = mapInit('map', [40.2085,-3.713], 6);
-		
-		var geoJSON = {
-		    "type": "FeatureCollection",
-		    "features": []
-		};
-		
-		for (var i = puntos.length - 1; i >= 0; i--) {
-			geoJSON.features.push({
-				"type": "Feature",
-		        "properties": {
-		          "causa": puntos[i]['CAUSA'],
-		          "id": puntos[i]['IDPIF']
-		        },
-		        "geometry": {
-		          "type": "Point",
-		          "coordinates": [puntos[i]['LONGITUD'], puntos[i]['LATITUD']]
-		        }
-			});
+			// contrasto con max
+		if(val > max) {
+			max = val;
 		}
+	});
+	
+		// ya puedo dibujar el gráfico
+	$('#provs li:gt(0)').each(function(){
+			// obtengo el valor del elemento
 		
-		var dataLayer = L.geoJson(geoJSON, {
-            onEachFeature: function(feature, layer) {
-                layer.bindPopup(
-                    '<a href="' + feature.properties.id + '/">' +
-                        feature.properties.causa +
-                    '</a>'
-                );
-            }
-        });
-	    map.addLayer(dataLayer);
+		var val = parseInt($(this).find('.dato').text());
 		
+		$(this).find('.bar-inn').css('width', val * 100 / max + '%');
+	});
+}
+	
+var homeInit = function(data){
+			
+	window.incendios = data;
+	
+	drawGraphs();
+	
+	return; 
+
+	if(!window.L) return $('#map').append('<h2>No se pudo dibujar el mapa.<h2>');
+	
+	var puntos = $.parseJSON(data);
+	
+	var map = mapInit('map', [40.2085,-3.713], 6);
+	
+	var geoJSON = {
+	    "type": "FeatureCollection",
+	    "features": []
+	};
+	
+	for (var i = puntos.length - 1; i >= 0; i--) {
+		geoJSON.features.push({
+			"type": "Feature",
+	        "properties": {
+	          "causa": puntos[i]['CAUSA'],
+	          "id": puntos[i]['IDPIF']
+	        },
+	        "geometry": {
+	          "type": "Point",
+	          "coordinates": [puntos[i]['LONGITUD'], puntos[i]['LATITUD']]
+	        }
+		});
 	}
+	
+	var dataLayer = L.geoJson(geoJSON, {
+        onEachFeature: function(feature, layer) {
+            layer.bindPopup(
+                '<a href="' + feature.properties.id + '/">' +
+                    feature.properties.causa +
+                '</a>'
+            );
+        }
+    });
+    map.addLayer(dataLayer);
+
 }
 
 	// Función de inicialización genérica del mapa
