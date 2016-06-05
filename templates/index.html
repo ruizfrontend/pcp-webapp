@@ -47,7 +47,7 @@
 			<div id="years">
 				<h2>Filtra por año</h2>
 				<ul class="btn-group">
-					<li class="btn btn-primary active">Ver todos<br><span>{{ fires_sorted | count }}</span></li>
+					<li class="btn btn-primary active"><span class="year">Ver todos</span><br><span>{{ fires_sorted | count }}</span></li>
 					{% for year, total in years.items() | sort %}
 						<li class="btn btn-default"><span class="year">{{ year }}</span><br><span>{{ total }}</span></li>
 					{% endfor %}
