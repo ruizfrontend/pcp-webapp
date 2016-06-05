@@ -105,6 +105,17 @@ var homeInit = function(data){
 	
 	drawGraphs();
 	
+	$('#years .btn').click(function(){
+		var $btn = $(this);
+
+			// si la opción clicada ya estaba seleccionada, no hacemos nada
+		if($btn.hasClass('active')) return;
+		
+			// cambiamos la opción activa en el menú
+		$('#years .btn.active').removeClass('active');
+		$btn.addClass('active');
+	});
+	
 	return; 
 
 	if(!window.L) return $('#map').append('<h2>No se pudo dibujar el mapa.<h2>');
