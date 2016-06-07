@@ -79,7 +79,7 @@ var drawGraphs = function() {
 	var max = 0;
 	
 		// obtengo el mayor valor, que equivaldrá al 100%
-	$('#provs li:gt(0)').each(function(){
+	$('#provs li').each(function(){
 			// obtengo el valor del elemento
 		var val = parseInt($(this).find('.dato').text());
 		
@@ -90,7 +90,7 @@ var drawGraphs = function() {
 	});
 	
 		// ya puedo dibujar el gráfico
-	$('#provs li:gt(0)').each(function(){
+	$('#provs li').each(function(){
 			// obtengo el valor del elemento
 		
 		var val = parseInt($(this).find('.dato').text());
@@ -98,7 +98,7 @@ var drawGraphs = function() {
 		$(this).find('.bar-inn').css('width', val * 100 / max + '%');
 	});
 }
-	
+
 var homeInit = function(data){
 			
 	window.incendios = JSON.parse(data);
@@ -106,6 +106,8 @@ var homeInit = function(data){
 	drawGraphs();
 	
 	$('#years .btn').click(function(){
+
+			// guarda la referencia al botón pulsado 
 		var $btn = $(this);
 
 			// si la opción clicada ya estaba seleccionada, no hacemos nada
@@ -137,7 +139,7 @@ var homeInit = function(data){
 			}
 		}
 		
-		$('#provs li:gt(0)').each(function(){
+		$('#provs li').each(function(){
 			// obtengo el valor del elemento
 		
 			var provincia = $(this).find('.title').text();

@@ -16,13 +16,14 @@ csv_dict = dict([[o['IDPIF'], o] for o in csv_list])
 
     # agrupado de provincias
 provs_dict = {}
-for k, g in groupby(csv_list, key=lambda fire: fire['PROVINCIA']):
-    provs_dict[k] = len(list(g))
+for key, group in groupby(csv_list, key=lambda fire: fire['PROVINCIA']):
+    provs_dict[key] = len(list(group))
 
 
     # añadimos campo año
 for fire in csv_list:
-    fire['YEAR'] = fire['FECHA'].split('-')[0]
+    fechaSplit = fire['FECHA'].split('-')
+    fire['YEAR'] = fechaSplit[0]
 
     # agrupado de años
 years_dict = {}
